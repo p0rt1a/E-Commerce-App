@@ -15,7 +15,7 @@ function App() {
         <Switch>
           {/* TODO: Navigate to Home component when it is '/': */}
           <Route path="/" exact component={Clothes} />
-          <Route path="/clothes" component={Clothes} />
+          <Route path="/clothes" exact component={Clothes} />
           <Route path="/clothes/:cloth_id" component={ClothDetails} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />

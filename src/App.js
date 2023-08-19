@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import Account from "./pages/Account";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import Footer from "./components/Footer";
+import Cart from "./pages/Cart";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <ProtectedRoute path="/account" component={Account} />
+          <ProtectedRoute path="/cart" component={Cart} />
         </Switch>
       </Router>
 

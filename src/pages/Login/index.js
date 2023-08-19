@@ -13,12 +13,12 @@ import {
 import validations from "./validations";
 import { LoginAccount } from "../../authApi";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 
-function Login() {
-  const history = useHistory();
+function Login({ history }) {
+  const { login } = useAuth();
 
-  const [loginSituation, setLoginSituation] = useState(false);
+  const [isLoginFailed, setIsLoginFailed] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -27,12 +27,12 @@ function Login() {
     },
     validationSchema: validations,
     onSubmit: async (values) => {
-      const loginResult = await LoginAccount(values.email, values.password);
-      setLoginSituation(loginResult);
-
-      if (loginResult) {
-        localStorage.setItem("user_id", loginResult[0].id);
+      try {
+        const loginResult = await LoginAccount(values.email, values.password);
+        login(loginResult);
         history.push("/");
+      } catch (e) {
+        setIsLoginFailed(true);
       }
     },
   });
@@ -51,7 +51,7 @@ function Login() {
       </Heading>
       <form onSubmit={formik.handleSubmit}>
         <FormControl pt={5}>
-          {loginSituation && (
+          {isLoginFailed && (
             <Alert status="error">
               <AlertIcon /> Incorrect email or password!
             </Alert>

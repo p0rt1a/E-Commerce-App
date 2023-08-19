@@ -1,11 +1,10 @@
 import { Heading, Container, Flex, Box, Button, Text } from "@chakra-ui/react";
 import { getUserDetails } from "../../usersApi";
 import { useQuery } from "react-query";
-import { Logout } from "../../authApi";
-import { useHistory } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 
-function Account() {
-  const history = useHistory();
+function Account({ history }) {
+  const { logout } = useAuth();
 
   const { isLoading, error, data } = useQuery("user_details", () =>
     getUserDetails(localStorage.getItem("user_id"))
@@ -28,7 +27,7 @@ function Account() {
           ml={5}
           colorScheme="red"
           onClick={() => {
-            Logout();
+            logout();
             history.push("/");
           }}
         >

@@ -10,11 +10,8 @@ import {
 import { useFormik } from "formik";
 import validations from "./validations";
 import { RegisterAccount } from "../../authApi";
-import { useHistory } from "react-router-dom";
 
-function Register() {
-  const history = useHistory();
-
+function Register({ history }) {
   const formik = useFormik({
     initialValues: {
       name: "",

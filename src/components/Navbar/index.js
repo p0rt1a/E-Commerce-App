@@ -10,15 +10,10 @@ import {
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { useState, useEffect } from "react";
-import { IsUserLoggedIn } from "../../authApi";
+import { useAuth } from "../../contexts/AuthContext";
 
 function Navbar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    setIsLoggedIn(IsUserLoggedIn());
-  });
+  const { loggedIn } = useAuth();
 
   return (
     <nav>
@@ -44,7 +39,7 @@ function Navbar() {
             </Tab>
           </TabList>
         </Tabs>
-        {isLoggedIn ? (
+        {loggedIn ? (
           <Flex gap={5}>
             <Button colorScheme="blue">
               <FontAwesomeIcon icon={faCartShopping} />

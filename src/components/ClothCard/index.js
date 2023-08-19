@@ -5,16 +5,26 @@ import {
   Heading,
   CardBody,
   Image,
+  Box,
   Stack,
   ButtonGroup,
   Button,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { useCart } from "../../contexts/CartContext";
+import { useAuth } from "../../contexts/AuthContext";
+import { useState } from "react";
 
 function ClothCard({ item }) {
+  const [isInCart, setIsInCart] = useState(false);
+  const { cartItems, setCartItems } = useCart();
+  const { loggedIn } = useAuth();
+  const toast = useToast();
+
   return (
     <Card maxW="sm">
       <CardBody>
@@ -30,9 +40,33 @@ function ClothCard({ item }) {
       <Divider />
       <CardFooter>
         <ButtonGroup>
-          <Button variant="solid" colorScheme="blue">
-            Add to Cart
-          </Button>
+          {isInCart && loggedIn ? (
+            <Button variant="outline" colorScheme="green" isDisabled={true}>
+              In Cart
+            </Button>
+          ) : (
+            <Button
+              variant="solid"
+              colorScheme="blue"
+              onClick={() => {
+                if (!loggedIn) {
+                  toast({
+                    position: "bottom-left",
+                    render: () => (
+                      <Box color="white" bgColor={"tomato"} p={3}>
+                        You have to login for this!
+                      </Box>
+                    ),
+                  });
+                } else if (loggedIn) {
+                  setCartItems([...cartItems, item]);
+                  setIsInCart(true);
+                }
+              }}
+            >
+              Add to Cart
+            </Button>
+          )}
           <Button variant="solid">
             <FontAwesomeIcon icon={faHeart} />
           </Button>

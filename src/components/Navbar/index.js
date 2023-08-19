@@ -5,14 +5,21 @@ import {
   Tab,
   TabList,
   Button,
-  Text,
   Heading,
 } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { useState, useEffect } from "react";
+import { IsUserLoggedIn } from "../../authApi";
 
 function Navbar() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    setIsLoggedIn(IsUserLoggedIn());
+  });
+
   return (
     <nav>
       <Flex
@@ -37,14 +44,25 @@ function Navbar() {
             </Tab>
           </TabList>
         </Tabs>
-        <Flex gap={5}>
-          <Button colorScheme="blue">
-            <FontAwesomeIcon icon={faCartShopping} />
-          </Button>
-          <Button colorScheme="blue" variant={"outline"}>
-            Account
-          </Button>
-        </Flex>
+        {isLoggedIn ? (
+          <Flex gap={5}>
+            <Button colorScheme="blue">
+              <FontAwesomeIcon icon={faCartShopping} />
+            </Button>
+            <Button colorScheme="blue" variant={"outline"}>
+              <NavLink to="/account">Account</NavLink>
+            </Button>
+          </Flex>
+        ) : (
+          <Flex gap={5}>
+            <Button colorScheme="blue">
+              <NavLink to="/login">Login</NavLink>
+            </Button>
+            <Button colorScheme="blue" variant={"outline"}>
+              <NavLink to="register">Register</NavLink>
+            </Button>
+          </Flex>
+        )}
       </Flex>
     </nav>
   );

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useAuth } from "./contexts/AuthContext";
 
 export const LoginAccount = async (email, password) => {
   const { data } = await axios.get(
@@ -15,14 +16,4 @@ export const RegisterAccount = async (input) => {
   );
 
   return data;
-};
-
-export const IsUserLoggedIn = () => {
-  var result = localStorage.getItem("user_id") ? true : false;
-
-  return result;
-};
-
-export const Logout = () => {
-  localStorage.removeItem("user_id");
 };

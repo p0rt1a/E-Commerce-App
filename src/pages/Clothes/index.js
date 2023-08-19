@@ -2,7 +2,7 @@ import { getClothes } from "../../clothesApi";
 import { useQuery } from "react-query";
 import ClothCard from "../../components/ClothCard";
 
-import { Flex, Box, Container, VStack } from "@chakra-ui/react";
+import { Flex, Box, Container } from "@chakra-ui/react";
 
 function Clothes() {
   const { isLoading, error, data } = useQuery("clothes", getClothes);

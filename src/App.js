@@ -5,6 +5,7 @@ import ClothDetails from "./pages/ClothDetails";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Account from "./pages/Account";
+import ProtectedRoute from "./pages/ProtectedRoute";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
           <Route path="/clothes/:cloth_id" component={ClothDetails} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
-          <Route path="/account" component={Account} />
+          <ProtectedRoute path="/account" component={Account} />
         </Switch>
       </Router>
     </div>

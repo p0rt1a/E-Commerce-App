@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Account from "./pages/Account";
 import ProtectedRoute from "./pages/ProtectedRoute";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
           <ProtectedRoute path="/account" component={Account} />
         </Switch>
       </Router>
+
+      <Footer />
     </div>
   );
 }

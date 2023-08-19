@@ -47,7 +47,7 @@ function Login({ history }) {
       borderRadius={"xl"}
     >
       <Heading as="h2" size="xl" color={"blue.500"}>
-        LOGIN
+        Login
       </Heading>
       <form onSubmit={formik.handleSubmit}>
         <FormControl pt={5}>
@@ -66,7 +66,9 @@ function Login({ history }) {
             value={formik.values.email}
             isInvalid={formik.touched.email && formik.errors.email}
           />
-          <FormHelperText color={"red"}>{formik.errors.email}</FormHelperText>
+          {formik.touched.email && (
+            <FormHelperText color={"red"}>{formik.errors.email}</FormHelperText>
+          )}
           <FormLabel>Password</FormLabel>
           <Input
             name="password"
@@ -77,9 +79,12 @@ function Login({ history }) {
             value={formik.values.password}
             isInvalid={formik.touched.password && formik.errors.password}
           />
-          <FormHelperText color={"red"}>
-            {formik.errors.password}
-          </FormHelperText>
+          {formik.touched.password && (
+            <FormHelperText color={"red"}>
+              {formik.errors.password}
+            </FormHelperText>
+          )}
+
           <Button colorScheme="blue" variant={"outline"} type="submit" mt={5}>
             Login
           </Button>

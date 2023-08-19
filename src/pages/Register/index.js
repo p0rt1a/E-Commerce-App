@@ -44,7 +44,7 @@ function Register({ history }) {
       borderRadius={"xl"}
     >
       <Heading as="h2" size={"xl"} color={"blue.500"}>
-        REGISTER
+        Register
       </Heading>
       <form onSubmit={formik.handleSubmit}>
         <FormControl pt={5}>
@@ -58,7 +58,7 @@ function Register({ history }) {
             onBlur={formik.handleBlur}
             isInvalid={formik.touched.name && formik.errors.name}
           ></Input>
-          {formik.errors.name && (
+          {formik.touched.name && (
             <FormHelperText color={"red"}>{formik.errors.name}</FormHelperText>
           )}
           <FormLabel>Surname</FormLabel>
@@ -71,7 +71,7 @@ function Register({ history }) {
             onBlur={formik.handleBlur}
             isInvalid={formik.touched.surname && formik.errors.surname}
           ></Input>
-          {formik.errors.surname && (
+          {formik.touched.surname && (
             <FormHelperText color={"red"}>
               {formik.errors.surname}
             </FormHelperText>
@@ -86,7 +86,7 @@ function Register({ history }) {
             onBlur={formik.handleBlur}
             isInvalid={formik.touched.email && formik.errors.email}
           ></Input>
-          {formik.errors.email && (
+          {formik.touched.email && (
             <FormHelperText color={"red"}>{formik.errors.email}</FormHelperText>
           )}
           <FormLabel>Password</FormLabel>
@@ -97,7 +97,7 @@ function Register({ history }) {
             onChange={formik.handleChange}
             value={formik.values.password}
           ></Input>
-          {formik.errors.password && (
+          {formik.touched.password && (
             <FormHelperText color={"red"}>
               {formik.errors.password}
             </FormHelperText>
@@ -109,7 +109,7 @@ function Register({ history }) {
             onChange={formik.handleChange}
             value={formik.values.passwordConfirm}
           ></Input>
-          {formik.errors.passwordConfirm && (
+          {formik.touched.passwordConfirm && (
             <FormHelperText color={"red"}>
               {formik.errors.passwordConfirm}
             </FormHelperText>

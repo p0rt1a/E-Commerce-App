@@ -6,14 +6,17 @@ import {
   TabList,
   Button,
   Heading,
+  Circle,
 } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../../contexts/AuthContext";
+import { useCart } from "../../contexts/CartContext";
 
 function Navbar() {
   const { loggedIn } = useAuth();
+  const { cartItems } = useCart();
 
   return (
     <nav>
@@ -41,8 +44,20 @@ function Navbar() {
         </Tabs>
         {loggedIn ? (
           <Flex gap={5}>
-            <Button colorScheme="blue">
-              <FontAwesomeIcon icon={faCartShopping} />
+            <Button colorScheme="blue" position={"relative"}>
+              <NavLink to="/cart">
+                <FontAwesomeIcon icon={faCartShopping} />
+                <Circle
+                  size={"5px"}
+                  position={"absolute"}
+                  right={"-5px"}
+                  bottom={"-5px"}
+                  bg={"green"}
+                  p={3}
+                >
+                  {cartItems.length}
+                </Circle>
+              </NavLink>
             </Button>
             <Button colorScheme="blue" variant={"outline"}>
               <NavLink to="/account">Account</NavLink>

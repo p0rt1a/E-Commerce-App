@@ -8,6 +8,7 @@ import Account from "./pages/Account";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import Footer from "./components/Footer";
 import Cart from "./pages/Cart";
+import Home from "./pages/Home";
 
 function App() {
   return (
@@ -16,8 +17,7 @@ function App() {
         <Navbar />
 
         <Switch>
-          {/* TODO: Navigate to Home component when it is '/': */}
-          <Route path="/" exact component={Clothes} />
+          <Route path="/" exact component={Home} />
           <Route path="/clothes" exact component={Clothes} />
           <Route path="/clothes/:cloth_id" component={ClothDetails} />
           <Route path="/login" component={Login} />

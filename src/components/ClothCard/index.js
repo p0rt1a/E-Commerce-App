@@ -17,13 +17,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { useCart } from "../../contexts/CartContext";
 import { useAuth } from "../../contexts/AuthContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function ClothCard({ item }) {
   const [isInCart, setIsInCart] = useState(false);
   const { cartItems, setCartItems } = useCart();
   const { loggedIn } = useAuth();
   const toast = useToast();
+
+  useEffect(() => {
+    cartItems.map((cartItem) => {
+      if (cartItem.id === item.id) {
+        setIsInCart(true);
+      }
+    });
+  }, []);
 
   return (
     <Card maxW="sm">
@@ -53,14 +61,14 @@ function ClothCard({ item }) {
                   toast({
                     position: "bottom-left",
                     render: () => (
-                      <Box color="white" bgColor={"tomato"} p={3}>
+                      <Box color="white" bgColor={"red"} p={3}>
                         You have to login for this!
                       </Box>
                     ),
                   });
                 } else if (loggedIn) {
-                  setCartItems([...cartItems, item]);
                   setIsInCart(true);
+                  setCartItems([...cartItems, item]);
                 }
               }}
             >

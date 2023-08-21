@@ -13,15 +13,12 @@ import {
   Alert,
   AlertIcon,
   AlertTitle,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
+  useToast,
 } from "@chakra-ui/react";
 
 function Cart() {
   const { cartItems, setCartItems, removeItem } = useCart();
+  const toast = useToast();
 
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -39,12 +36,16 @@ function Cart() {
     setTotalPrice(newTotalPrice);
   };
 
-  const increasePrice = (price) => {
-    setTotalPrice((totalPrice += price));
-  };
+  const completeOrder = () => {
+    setCartItems([]);
 
-  const decreasePrice = (price) => {
-    setTotalPrice((totalPrice -= price));
+    toast({
+      title: "Order Notification",
+      description: "Order created successfully!",
+      status: "success",
+      duration: "5000",
+      isClosable: true,
+    });
   };
 
   return (
@@ -105,7 +106,9 @@ function Cart() {
       <Divider my={5} />
       {cartItems.length > 0 && (
         <Flex justifyContent={"space-between"}>
-          <Button colorScheme="blue">Complete Order</Button>
+          <Button colorScheme="blue" onClick={completeOrder}>
+            Complete Order
+          </Button>
           <Text color={"blue.600"}>
             Total Price: <b>${totalPrice}</b>
           </Text>

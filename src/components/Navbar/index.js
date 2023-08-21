@@ -13,16 +13,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../../contexts/AuthContext";
 import { useCart } from "../../contexts/CartContext";
+import { useEffect } from "react";
 
 function Navbar() {
-  const { loggedIn } = useAuth();
+  const { user, loggedIn } = useAuth();
   const { cartItems } = useCart();
 
   return (
     <nav>
       <Flex
         justifyContent={"space-between"}
-        px={20}
+        px={[5, 5, 10, 20]}
         alignItems={"center"}
         backgroundColor={"gray.50"}
         py={5}
@@ -44,7 +45,12 @@ function Navbar() {
         </Tabs>
         {loggedIn ? (
           <Flex gap={5}>
-            <Button colorScheme="blue" position={"relative"}>
+            {user?.role === "admin" && (
+              <Button colorScheme="pink" variant={"outline"}>
+                <NavLink to="/admin">Admin Panel</NavLink>
+              </Button>
+            )}
+            <Button colorScheme="blue">
               <NavLink to="/cart">
                 <FontAwesomeIcon icon={faCartShopping} />
                 <Circle

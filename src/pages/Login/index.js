@@ -29,7 +29,7 @@ function Login({ history }) {
     onSubmit: async (values) => {
       try {
         const loginResult = await LoginAccount(values.email, values.password);
-        login(loginResult);
+        login(loginResult[0]);
         history.push("/");
       } catch (e) {
         setIsLoginFailed(true);

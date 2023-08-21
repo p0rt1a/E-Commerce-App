@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useAuth } from "./contexts/AuthContext";
 
 export const LoginAccount = async (email, password) => {
   const { data } = await axios.get(

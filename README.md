@@ -1,6 +1,12 @@
 ## You can view my project here:
 https://friendly-elf-073b74.netlify.app
 
+# Login
+Usernames : demo@demo.com & admin@demo.com
+Password : demo123
+
+You can view admin panel with admin@demo.com. Password is same for both!
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

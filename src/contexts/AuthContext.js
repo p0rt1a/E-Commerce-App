@@ -9,6 +9,7 @@ const AuthProvider = ({ children }) => {
   const login = (data) => {
     setLoggedIn(true);
     setUser(data);
+    localStorage.setItem("user_id", data.id);
   };
 
   const logout = () => {

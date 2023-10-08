@@ -5,7 +5,7 @@ import {
   Tab,
   TabList,
   Button,
-  Heading,
+  Image,
   Circle,
 } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
@@ -13,7 +13,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../../contexts/AuthContext";
 import { useCart } from "../../contexts/CartContext";
-import { useEffect } from "react";
 
 function Navbar() {
   const { user, loggedIn } = useAuth();
@@ -26,12 +25,15 @@ function Navbar() {
         px={[5, 5, 10, 20]}
         alignItems={"center"}
         backgroundColor={"gray.50"}
-        py={5}
+        py={3}
       >
         <Box>
-          <Heading as={"h2"} size={"md"}>
-            e-Commerce
-          </Heading>
+          <Image
+            h={"60px"}
+            objectFit={"contain"}
+            src={require("../../assets/logo.png")}
+            alt="rüküş logo"
+          />
         </Box>
         <Tabs justifySelf={"flex-start"}>
           <TabList>

@@ -9,7 +9,7 @@ import chakraUiLogo from "../../assets/chakraui_logo.png";
 
 function Footer() {
   return (
-    <Container backgroundColor={"blackAlpha.50"} maxW={"100%"}>
+    <Container backgroundColor={"blackAlpha.50"} maxW={"100%"} mt={5}>
       <Flex
         alignItems={"center"}
         justifyContent={"space-around"}
